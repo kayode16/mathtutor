@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#08203a">
+  <title>Assessment Request Received | Emivant</title>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+
+    gtag('js', new Date());
+    gtag('config', 'G-ESNQJDYE1B', { anonymize_ip: true });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESNQJDYE1B"></script>
+
+  <script>
+    const EMIVANT_META_PIXEL_ID = '1032810242576149';
+
+    function loadMetaPixelAndLead() {
+      if (!window.fbq) {
+        !function(f,b,e,v,n,t,s) {
+          if (f.fbq) return;
+          n = f.fbq = function() {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = true;
+          n.version = '2.0';
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = true;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', EMIVANT_META_PIXEL_ID);
+        fbq('track', 'PageView');
+      }
+
+      if (!sessionStorage.getItem('emivant_lead_recorded')) {
+        fbq('track', 'Lead', { source: 'free_assessment_form' });
+        gtag('event', 'generate_lead', {
+          form_name: 'free-mathematics-assessment'
+        });
+        sessionStorage.setItem('emivant_lead_recorded', 'true');
+      }
+    }
+
+    const savedConsent = localStorage.getItem('emivant_cookie_consent');
+    if (savedConsent === 'accepted') {
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
+      });
+      loadMetaPixelAndLead();
+    }
+  </script>
+
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      font-family:Arial,Helvetica,sans-serif;
+      background:linear-gradient(135deg,#eef3f9,#fff);
+      color:#172033;
+    }
+    .card{
+      width:min(680px,100%);
+      padding:48px 34px;
+      border:1px solid #dce5f0;
+      border-radius:24px;
+      background:#fff;
+      box-shadow:0 20px 55px rgba(15,61,145,.12);
+      text-align:center;
+    }
+    .icon{
+      width:72px;height:72px;display:grid;place-items:center;
+      margin:0 auto 20px;border-radius:50%;
+      background:#e6f7f1;color:#0f766e;font-size:2rem;font-weight:900;
+    }
+    h1{color:#0f3d91;line-height:1.12}
+    p{color:#5f6f86;line-height:1.7}
+    .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
+    a{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:48px;padding:12px 20px;border-radius:999px;
+      text-decoration:none;font-weight:900;
+    }
+    .home{background:#f4b400;color:#08203a}
+    .whatsapp{background:#25d366;color:#08351b}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="icon">✓</div>
+    <h1>Your Assessment Request Has Been Received</h1>
+    <p>
+      Thank you. Emivant Online Mathematics Tutor will review your information and contact you using the details you submitted.
+    </p>
+    <div class="actions">
+      <a class="home" href="/">Return to the website</a>
+      <a class="whatsapp"
+         href="https://wa.me/2348130856747?text=Hello%20Mr%20Segun%2C%20I%20have%20submitted%20the%20free%20Mathematics%20assessment%20form."
+         onclick="if(typeof fbq==='function'){fbq('track','Contact',{contact_method:'whatsapp'});} if(typeof gtag==='function'){gtag('event','contact',{contact_method:'whatsapp'});}">
+        Continue on WhatsApp
+      </a>
+    </div>
+  </main>
+</body>
+</html>
