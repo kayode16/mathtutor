@@ -1,1458 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en-NG">
 <head>
-
-  <!-- Privacy-conscious Google Analytics and Meta Pixel setup -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-
-    // Default consent: no analytics or advertising storage until accepted.
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      wait_for_update: 500
-    });
-
-    gtag('js', new Date());
-    gtag('config', 'G-ESNQJDYE1B', {
-      anonymize_ip: true
-    });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESNQJDYE1B"></script>
-
-  <script>
-    const EMIVANT_META_PIXEL_ID = '1032810242576149';
-
-    function loadMetaPixel() {
-      if (window.fbq) return;
-
-      !function(f,b,e,v,n,t,s) {
-        if (f.fbq) return;
-        n = f.fbq = function() {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = true;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = true;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-      fbq('init', EMIVANT_META_PIXEL_ID);
-      fbq('track', 'PageView');
-    }
-
-    function grantTrackingConsent() {
-      gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'granted',
-        ad_user_data: 'granted',
-        ad_personalization: 'granted'
-      });
-      loadMetaPixel();
-    }
-
-    function denyTrackingConsent() {
-      gtag('consent', 'update', {
-        analytics_storage: 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
-    }
-
-    function trackContact(contactType) {
-      if (typeof gtag === 'function') {
-        gtag('event', 'contact', {
-          contact_method: contactType
-        });
-      }
-
-      if (typeof fbq === 'function') {
-        fbq('track', 'Contact', {
-          contact_method: contactType
-        });
-      }
-    }
-
-    const savedConsent = localStorage.getItem('emivant_cookie_consent');
-    if (savedConsent === 'accepted') {
-      grantTrackingConsent();
-    } else if (savedConsent === 'rejected') {
-      denyTrackingConsent();
-    }
-  </script>
-
-<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Online Mathematics Tutor for Children Ages 6–16 | Emivant</title>
-  <meta name="description" content="Personalised online Mathematics lessons for children ages 6–16. Primary, secondary, BECE, WAEC and IGCSE support with an experienced Mathematics tutor.">
-  <meta name="keywords" content="online mathematics tutor, maths tutor Nigeria, online maths lessons, WAEC mathematics tutor, IGCSE maths tutor, BECE mathematics tutor">
-  <meta name="author" content="Emivant Online Mathematics Tutor">
-  <meta name="theme-color" content="#08203a">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-
-  <meta property="og:title" content="Emivant Online Mathematics Tutor">
-  <meta property="og:description" content="Helping children ages 6–16 understand Mathematics, build confidence and improve performance.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mathtutor.com.ng/">
-
-  <link rel="canonical" href="https://mathtutor.com.ng/">
-
-  <style>
-    :root{
-      --navy:#08203a;
-      --blue:#0f3d91;
-      --blue-dark:#0b2f71;
-      --gold:#f4b400;
-      --gold-soft:#fff8dc;
-      --green:#0f766e;
-      --ink:#172033;
-      --muted:#5f6f86;
-      --line:#dce5f0;
-      --surface:#ffffff;
-      --background:#eef3f9;
-      --shadow:0 18px 45px rgba(15,61,145,.10);
-      --radius:22px;
-      --container:1180px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Arial, Helvetica, sans-serif;
-      color:var(--ink);
-      background:#fff;
-      line-height:1.65;
-    }
-
-    img{max-width:100%}
-    a{color:inherit}
-    button,input,select,textarea{font:inherit}
-
-    .container{
-      width:min(var(--container), calc(100% - 36px));
-      margin-inline:auto;
-    }
-
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:rgba(8,32,58,.97);
-      color:#fff;
-      box-shadow:0 8px 25px rgba(0,0,0,.08);
-      backdrop-filter:blur(10px);
-    }
-
-    .nav-wrap{
-      min-height:86px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:24px;
-    }
-
-    .brand{
-      text-decoration:none;
-      line-height:1.1;
-      min-width:0;
-    }
-
-    .brand-main{
-      display:block;
-      font-size:clamp(1.2rem,2vw,1.65rem);
-      font-weight:900;
-      letter-spacing:-.02em;
-    }
-
-    .brand-main span{color:var(--gold)}
-    .brand-tag{
-      display:block;
-      margin-top:8px;
-      color:#d7e4f5;
-      font-size:.78rem;
-      font-weight:500;
-    }
-
-    .site-nav{
-      display:flex;
-      align-items:center;
-      gap:28px;
-      font-weight:800;
-    }
-
-    .site-nav a{
-      color:#fff;
-      text-decoration:none;
-      font-size:.96rem;
-    }
-
-    .site-nav a:hover,
-    .site-nav a:focus{color:var(--gold)}
-
-    .nav-cta{
-      padding:11px 17px;
-      border-radius:999px;
-      background:var(--gold);
-      color:var(--navy)!important;
-    }
-
-    .hero{
-      position:relative;
-      overflow:hidden;
-      color:#fff;
-      background:
-        radial-gradient(circle at 88% 20%, rgba(244,180,0,.28), transparent 24%),
-        linear-gradient(135deg,#08203a 0%,#0f3d91 100%);
-      padding:88px 0 82px;
-    }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      width:360px;
-      height:360px;
-      right:-130px;
-      bottom:-180px;
-      border:60px solid rgba(255,255,255,.06);
-      border-radius:50%;
-    }
-
-    .hero-grid{
-      position:relative;
-      z-index:1;
-      display:grid;
-      grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
-      gap:50px;
-      align-items:center;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin:0 0 18px;
-      padding:7px 12px;
-      border:1px solid rgba(255,255,255,.28);
-      border-radius:999px;
-      background:rgba(255,255,255,.09);
-      color:#fff3bd;
-      font-size:.78rem;
-      font-weight:900;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-
-    h1,h2,h3,p{margin-top:0}
-    h1{
-      margin-bottom:20px;
-      font-size:clamp(2.4rem,5.4vw,4.6rem);
-      line-height:1.03;
-      letter-spacing:-.045em;
-      max-width:850px;
-    }
-
-    .hero-copy{
-      max-width:760px;
-      color:#e3edf9;
-      font-size:clamp(1.02rem,2vw,1.22rem);
-    }
-
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-top:30px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:50px;
-      padding:13px 22px;
-      border:0;
-      border-radius:999px;
-      cursor:pointer;
-      text-decoration:none;
-      font-weight:900;
-      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-
-    .btn:hover{transform:translateY(-2px)}
-    .btn-primary{
-      background:var(--gold);
-      color:var(--navy);
-      box-shadow:0 12px 28px rgba(244,180,0,.22);
-    }
-
-    .btn-secondary{
-      border:1px solid rgba(255,255,255,.45);
-      background:rgba(255,255,255,.08);
-      color:#fff;
-    }
-
-    .hero-points{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px 18px;
-      margin:28px 0 0;
-      padding:0;
-      list-style:none;
-      color:#f3f7fc;
-      font-weight:700;
-      font-size:.94rem;
-    }
-
-    .hero-points li::before{
-      content:"✓";
-      margin-right:8px;
-      color:var(--gold);
-      font-weight:900;
-    }
-
-    .hero-card{
-      padding:30px;
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:28px;
-      background:rgba(255,255,255,.11);
-      box-shadow:0 25px 60px rgba(0,0,0,.18);
-      backdrop-filter:blur(12px);
-    }
-
-    .hero-card h2{
-      margin-bottom:10px;
-      font-size:1.55rem;
-    }
-
-    .hero-card p{color:#e5eef9}
-    .hero-card .stat{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:15px;
-      padding:14px 0;
-      border-bottom:1px solid rgba(255,255,255,.16);
-    }
-
-    .hero-card .stat:last-child{border-bottom:0}
-    .hero-card strong{font-size:1.15rem;color:#fff3bd}
-    .hero-card span{color:#dce8f5;text-align:right}
-
-    section{padding:82px 0}
-    .soft-section{background:var(--background)}
-    .dark-section{background:var(--navy);color:#fff}
-
-    .section-head{
-      max-width:780px;
-      margin:0 auto 42px;
-      text-align:center;
-    }
-
-    .section-kicker{
-      margin-bottom:8px;
-      color:#b36b00;
-      font-weight:900;
-      font-size:.78rem;
-      letter-spacing:.1em;
-      text-transform:uppercase;
-    }
-
-    .section-title{
-      margin-bottom:14px;
-      color:var(--blue);
-      font-size:clamp(2rem,4vw,3.15rem);
-      line-height:1.08;
-      letter-spacing:-.035em;
-    }
-
-    .dark-section .section-title{color:#fff}
-    .section-subtitle{color:var(--muted);font-size:1.05rem}
-    .dark-section .section-subtitle{color:#cdd9e7}
-
-    .trust-grid,
-    .program-grid,
-    .testimonial-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:24px;
-    }
-
-    .card{
-      padding:30px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:var(--surface);
-      box-shadow:var(--shadow);
-    }
-
-    .card h3{
-      margin-bottom:12px;
-      color:var(--blue);
-      font-size:1.2rem;
-    }
-
-    .card p{color:var(--muted)}
-    .icon-box{
-      width:48px;
-      height:48px;
-      display:grid;
-      place-items:center;
-      margin-bottom:18px;
-      border-radius:14px;
-      background:var(--gold-soft);
-      font-size:1.35rem;
-    }
-
-    .tutor-layout{
-      display:grid;
-      grid-template-columns:minmax(0,.92fr) minmax(0,1.18fr);
-      gap:28px;
-      align-items:start;
-    }
-
-    .tutor-profile-card,
-    .achievement-card,
-    .packages-card{
-      border:1px solid var(--line);
-      border-radius:24px;
-      background:#fff;
-      box-shadow:var(--shadow);
-    }
-
-    .tutor-profile-card{
-      padding:38px;
-      text-align:center;
-    }
-
-    .tutor-profile-card p:not(.tutor-role){
-      text-align:left;
-      color:var(--muted);
-    }
-
-   .tutor-photo{
-    width:300px;
-    height:360px;
-    display:block;
-    margin:0 auto;
-    border-radius:20px;
-    border:5px solid #0f3d91;
-    object-fit:cover;
-    object-position:top center;
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
-}
-
-    .tutor-profile-card h3{
-      margin:22px 0 4px;
-      color:var(--blue);
-      font-size:1.55rem;
-    }
-
-    .tutor-role{
-      margin-bottom:24px;
-      color:#334155;
-      font-weight:800;
-    }
-
-    .tutor-side{
-      display:grid;
-      gap:24px;
-    }
-
-    .achievement-card,
-    .packages-card{padding:30px}
-
-    .achievement-card h3,
-    .packages-card h3{
-      margin-bottom:18px;
-      color:var(--blue);
-      font-size:1.35rem;
-    }
-
-    .check-list{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px 24px;
-      padding:0;
-      margin:0;
-      list-style:none;
-    }
-
-    .check-list li{
-      position:relative;
-      padding-left:25px;
-      color:#334155;
-    }
-
-    .check-list li::before{
-      content:"✓";
-      position:absolute;
-      left:0;
-      color:var(--green);
-      font-weight:900;
-    }
-
-    .package-heading{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:18px;
-    }
-
-    .package-heading .section-kicker{text-align:left}
-    .text-link{
-      color:var(--blue);
-      font-weight:900;
-      text-decoration:none;
-      white-space:nowrap;
-    }
-
-    .package-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:14px;
-    }
-
-    .mini-package{
-      position:relative;
-      min-height:148px;
-      padding:20px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:#f8fafc;
-    }
-
-    .mini-package span,
-    .mini-package strong,
-    .mini-package small{display:block}
-
-    .package-name{
-      color:#334155;
-      font-weight:800;
-    }
-
-    .mini-package strong{
-      margin:7px 0;
-      color:var(--blue);
-      font-size:1.45rem;
-    }
-
-    .mini-package small{
-      color:var(--muted);
-      line-height:1.45;
-    }
-
-    .featured-package{
-      border:2px solid var(--gold);
-      background:#fffdf4;
-    }
-
-    .popular-label{
-      display:inline-block!important;
-      width:max-content;
-      margin-bottom:9px;
-      padding:4px 9px;
-      border-radius:999px;
-      background:var(--gold);
-      color:var(--navy);
-      font-size:.7rem;
-      font-weight:900;
-      text-transform:uppercase;
-    }
-
-    .package-note{
-      margin:17px 0 0;
-      color:var(--muted);
-      font-size:.88rem;
-    }
-
-    .program-card{
-      display:flex;
-      flex-direction:column;
-      min-height:100%;
-      padding:32px;
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:#fff;
-      box-shadow:var(--shadow);
-    }
-
-    .program-card.featured{
-      border:2px solid var(--gold);
-      transform:translateY(-8px);
-    }
-
-    .age-tag{
-      display:inline-block;
-      align-self:flex-start;
-      margin-bottom:16px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:#eaf0fb;
-      color:var(--blue);
-      font-size:.76rem;
-      font-weight:900;
-      text-transform:uppercase;
-    }
-
-    .program-card h3{
-      margin-bottom:12px;
-      color:var(--blue);
-      font-size:1.38rem;
-    }
-
-    .program-card p{color:var(--muted)}
-    .program-list{
-      margin:4px 0 26px;
-      padding:0;
-      list-style:none;
-    }
-
-    .program-list li{
-      position:relative;
-      padding:7px 0 7px 25px;
-      color:#334155;
-    }
-
-    .program-list li::before{
-      content:"✓";
-      position:absolute;
-      left:0;
-      color:var(--green);
-      font-weight:900;
-    }
-
-    .program-card .btn{
-      margin-top:auto;
-      align-self:flex-start;
-      background:var(--blue);
-      color:#fff;
-    }
-
-    .curriculum-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:22px;
-    }
-
-    .curriculum-card{
-      padding:28px;
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:20px;
-      background:rgba(255,255,255,.07);
-    }
-
-    .curriculum-card h3{color:#fff3bd}
-    .curriculum-card p{color:#d8e4f1}
-
-    .assessment-wrap{
-      display:grid;
-      grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
-      gap:34px;
-      align-items:start;
-    }
-
-    .assessment-copy{
-      padding:34px;
-      border-radius:24px;
-      background:var(--navy);
-      color:#fff;
-    }
-
-    .assessment-copy h2{
-      margin-bottom:14px;
-      font-size:2.2rem;
-      line-height:1.1;
-    }
-
-    .assessment-copy p{color:#d5e1ef}
-    .assessment-copy ul{
-      margin:24px 0 0;
-      padding:0;
-      list-style:none;
-    }
-
-    .assessment-copy li{
-      padding:9px 0;
-      color:#f2f6fa;
-    }
-
-    .assessment-copy li::before{
-      content:"✓";
-      margin-right:10px;
-      color:var(--gold);
-      font-weight:900;
-    }
-
-    .assessment-form{
-      padding:34px;
-      border:1px solid var(--line);
-      border-radius:24px;
-      background:#fff;
-      box-shadow:var(--shadow);
-    }
-
-    .form-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:20px;
-    }
-
-    .form-group{
-      display:grid;
-      gap:8px;
-    }
-
-    .form-group label{
-      color:#0f172a;
-      font-weight:800;
-      font-size:.92rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea{
-      width:100%;
-      padding:14px 15px;
-      border:1px solid #cbd5e1;
-      border-radius:11px;
-      background:#fff;
-      color:#0f172a;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus{
-      border-color:var(--blue);
-      outline:3px solid rgba(15,61,145,.12);
-    }
-
-    .full-width{grid-column:1/-1}
-    .assessment-form .btn{
-      margin-top:22px;
-      width:100%;
-      background:var(--gold);
-      color:var(--navy);
-    }
-
-    .privacy-note{
-      margin:12px 0 0;
-      color:var(--muted);
-      font-size:.84rem;
-      text-align:center;
-    }
-
-    .hidden-field{
-      position:absolute;
-      width:1px;
-      height:1px;
-      overflow:hidden;
-      clip:rect(0 0 0 0);
-      white-space:nowrap;
-    }
-
-    .testimonial-card{
-      padding:28px;
-      border:1px solid var(--line);
-      border-radius:20px;
-      background:#fff;
-      box-shadow:var(--shadow);
-    }
-
-    .stars{
-      margin-bottom:12px;
-      color:#e0a000;
-      letter-spacing:2px;
-    }
-
-    .testimonial-card p{color:#42526a}
-    .testimonial-card strong{color:var(--blue)}
-
-    .final-cta{
-      text-align:center;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(244,180,0,.16), transparent 25%),
-        var(--navy);
-      color:#fff;
-    }
-
-    .final-cta h2{
-      margin-bottom:15px;
-      font-size:clamp(2rem,4vw,3.3rem);
-      line-height:1.08;
-    }
-
-    .final-cta p{
-      max-width:760px;
-      margin:0 auto 28px;
-      color:#d4e0ed;
-      font-size:1.08rem;
-    }
-
-    .contact-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:24px;
-    }
-
-    .site-footer{
-      padding:32px 0;
-      background:#020d19;
-      color:#c9d5e4;
-      text-align:center;
-    }
-
-    .site-footer p{margin:6px 0}
-    .site-footer a{color:#fff3bd}
-
-    .whatsapp-float{
-      position:fixed;
-      right:18px;
-      bottom:18px;
-      z-index:999;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:13px 17px;
-      border-radius:999px;
-      background:#25d366;
-      color:#08351b;
-      box-shadow:0 15px 35px rgba(0,0,0,.18);
-      text-decoration:none;
-      font-weight:900;
-    }
-
-    @media (max-width:960px){
-      .hero-grid,
-      .tutor-layout,
-      .assessment-wrap{grid-template-columns:1fr}
-
-      .trust-grid,
-      .program-grid,
-      .testimonial-grid,
-      .curriculum-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-
-      .program-card.featured{transform:none}
-    }
-
-    @media (max-width:760px){
-      .nav-wrap{
-        min-height:auto;
-        padding:18px 0;
-        align-items:flex-start;
-        flex-direction:column;
-      }
-
-      .site-nav{
-        width:100%;
-        gap:14px;
-        overflow-x:auto;
-        padding-bottom:3px;
-      }
-
-      .site-nav a{white-space:nowrap}
-      .brand-tag{display:none}
-      .hero{padding:66px 0}
-      .hero-points{grid-template-columns:1fr}
-      section{padding:64px 0}
-
-      .trust-grid,
-      .program-grid,
-      .testimonial-grid,
-      .curriculum-grid,
-      .contact-grid{grid-template-columns:1fr}
-
-      .check-list,
-      .package-grid,
-      .form-grid{grid-template-columns:1fr}
-
-      .full-width{grid-column:auto}
-      .package-heading{display:block}
-      .text-link{display:inline-block;margin-bottom:16px}
-      .tutor-profile-card,
-      .achievement-card,
-      .packages-card,
-      .assessment-form{padding:24px 20px}
-
-      .whatsapp-float span{display:none}
-      .whatsapp-float{
-        width:52px;
-        height:52px;
-        padding:0;
-        justify-content:center;
-        border-radius:50%;
-        font-size:1.25rem;
-      }
-    }
-  
-    .cookie-consent{
-      position:fixed;
-      left:18px;
-      right:18px;
-      bottom:18px;
-      z-index:2000;
-      display:none;
-      max-width:760px;
-      margin:0 auto;
-      padding:20px;
-      border:1px solid var(--line);
-      border-radius:18px;
-      background:#fff;
-      color:var(--ink);
-      box-shadow:0 22px 60px rgba(0,0,0,.24);
-    }
-
-    .cookie-consent.is-visible{display:block}
-    .cookie-consent p{margin:0;color:var(--muted)}
-    .cookie-consent a{color:var(--blue);font-weight:800}
-    .cookie-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:15px;
-    }
-
-    .cookie-btn{
-      min-height:44px;
-      padding:10px 18px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--navy);
-      cursor:pointer;
-      font-weight:900;
-    }
-
-    .cookie-btn.accept{
-      border-color:var(--gold);
-      background:var(--gold);
-    }
-
-    @media (max-width:760px){
-      .cookie-consent{
-        left:12px;
-        right:12px;
-        bottom:12px;
-      }
-      .cookie-actions{display:grid;grid-template-columns:1fr 1fr}
-    }
-
-  </style>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"EducationalOrganization",
-    "name":"Emivant Online Mathematics Tutor",
-    "url":"https://mathtutor.com.ng/",
-    "email":"segunoladele@gmail.com",
-    "telephone":"+2348130856747",
-    "areaServed":"Worldwide",
-    "description":"Online Mathematics lessons for children ages 6–16, including primary, secondary, BECE, WAEC and IGCSE support."
-  }
-  </script>
-</head>
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#0C1B3D" name="theme-color"/>
+<title>Online Maths Tutor Nigeria | WAEC, JAMB, GCSE &amp; IGCSE | MathTutor Nigeria</title>
+<meta content="One-to-one online Maths tutoring for Nigerian and international students. WAEC, NECO, JAMB, GCSE, IGCSE and Common Entrance support. Book a free assessment." name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="MathTutor Nigeria" property="og:site_name"/>
+<meta content="Online Maths Tutor for WAEC, JAMB, GCSE &amp; IGCSE | MathTutor Nigeria" property="og:title"/>
+<meta content="Personalised Maths tutoring led by Mr. Segun Oladele, UK QTS and TRCN certified. Book a free learning assessment." property="og:description"/>
+<meta content="https://mathtutor.com.ng/" property="og:url"/>
+<link href="https://mathtutor.com.ng/" rel="canonical"/>
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link as="image" href="assets/segun-oladele.webp" rel="preload"/>
+<link href="styles.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "EducationalOrganization", "@id": "https://mathtutor.com.ng/#organization", "name": "MathTutor Nigeria", "url": "https://mathtutor.com.ng/", "logo": "https://mathtutor.com.ng/assets/favicon.svg", "image": "https://mathtutor.com.ng/assets/social-preview.jpg", "description": "Personalised online Mathematics tutoring for Nigerian and international students, including WAEC, NECO, GCE, JAMB, GCSE, IGCSE and Common Entrance preparation.", "email": "segunoladele@gmail.com", "telephone": "+2348130856747", "founder": {"@id": "https://mathtutor.com.ng/#founder"}, "parentOrganization": {"@type": "Organization", "name": "EMIVANT Educational and Technology Services Limited", "url": "https://www.emivant.com.ng/"}, "areaServed": [{"@type": "Country", "name": "Nigeria"}, {"@type": "Place", "name": "International online learning"}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Mathematics tutoring programmes", "itemListElement": [{"@type": "OfferCatalog", "name": "WAEC, NECO and GCE Mathematics tutoring"}, {"@type": "OfferCatalog", "name": "JAMB / UTME Mathematics tutoring"}, {"@type": "OfferCatalog", "name": "GCSE and IGCSE Mathematics tutoring"}, {"@type": "OfferCatalog", "name": "Common Entrance and school Mathematics tutoring"}]}}, {"@type": "Person", "@id": "https://mathtutor.com.ng/#founder", "name": "Mr. Segun Oladele", "jobTitle": "Founder and Lead Mathematics Tutor", "worksFor": {"@id": "https://mathtutor.com.ng/#organization"}, "knowsAbout": ["Mathematics education", "WAEC Mathematics", "JAMB Mathematics", "GCSE Mathematics", "IGCSE Mathematics"]}, {"@type": "WebSite", "@id": "https://mathtutor.com.ng/#website", "name": "MathTutor Nigeria", "url": "https://mathtutor.com.ng/", "publisher": {"@id": "https://mathtutor.com.ng/#organization"}}, {"@type": "WebPage", "@id": "https://mathtutor.com.ng/#webpage", "name": "Online Mathematics Tutor in Nigeria", "url": "https://mathtutor.com.ng/", "isPartOf": {"@id": "https://mathtutor.com.ng/#website"}, "about": {"@id": "https://mathtutor.com.ng/#organization"}}]}</script>
+<meta content="https://mathtutor.com.ng/assets/social-preview.jpg" property="og:image"/><meta content="Mr. Segun Oladele | MathTutor Nigeria" property="og:image:alt"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="MathTutor Nigeria | Online Maths Tutoring" name="twitter:title"/><meta content="One-to-one Mathematics support for Nigerian and international learners." name="twitter:description"/><meta content="https://mathtutor.com.ng/assets/social-preview.jpg" name="twitter:image"/><link href="/sitemap.xml" rel="sitemap" type="application/xml"/></head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="Emivant Online Mathematics Tutor home">
-        <span class="brand-main">Emivant <span>Online Mathematics Tutor</span></span>
-        <span class="brand-tag">Mathematics Tutor | Online Learning | Exam Preparation | Academic Success</span>
-      </a>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="topbar"><span aria-hidden="true" class="topbar-dot"></span> Learning at home. Confidence everywhere. <span class="topbar-divider">|</span> <a href="tel:+2348130856747">Call: 0813 085 6747</a></div>
+<header class="site-header" id="home">
+<div class="container nav-wrap">
+<a aria-label="MathTutor Nigeria, home" class="wordmark" href="#home">
+<span aria-hidden="true" class="wordmark-symbol">∑</span>
+<span class="wordmark-lines"><span class="wordmark-main">Math<span>Tutor</span></span><span class="wordmark-sub">NIGERIA</span></span>
+</a>
+<button aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation" class="nav-toggle" type="button"><span></span><span></span><span></span></button>
+<nav aria-label="Main navigation" class="nav" id="site-nav">
+<a href="#why-us">Why us</a>
+<a href="#programmes">Programmes</a>
+<a href="#tutor">Meet your tutor</a>
+<a href="#plans">Plans</a>
+<a href="#faq">FAQs</a>
+<a href="#videos">Videos</a><a href="#testimonials">Feedback</a><a class="nav-cta" href="#assessment">Free assessment <span aria-hidden="true">↗</span></a>
+</nav>
+</div>
+</header>
+<main id="main">
+<section aria-labelledby="hero-title" class="hero section-pad">
+<div class="container hero-grid">
+<div class="hero-copy">
+<div class="eyebrow"><span class="pulse-dot"></span> PERSONALISED ONLINE MATHEMATICS TUTORING</div>
+<h1 id="hero-title">From <em>“I can't do Maths”</em> to <span class="underline-swoosh">“I've got this.”</span></h1>
+<p class="hero-lead">Is your child losing confidence, struggling with schoolwork or preparing for a big exam? Let's find the gaps, make Maths clearer and build a plan that fits how they learn.</p>
+<div class="hero-actions"><a class="button button-orange" href="#assessment">Book a free assessment <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#programmes">Explore programmes <span aria-hidden="true">→</span></a></div>
+<div aria-label="Professional credentials" class="hero-trust"><span><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg> UK Qualified Teacher Status</span><span><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg> 12+ years of experience</span></div>
+</div>
+<div class="hero-visual">
+<div class="hero-photo-shape">
+<img alt="Mr. Segun Oladele, Founder and Lead Mathematics Tutor at MathTutor Nigeria" fetchpriority="high" height="640" src="assets/segun-oladele.webp" width="640"/>
+<span aria-hidden="true" class="photo-glow"></span>
+</div>
+<div class="floating-card card-credential"><span aria-hidden="true" class="credential-icon">★</span><span><strong>UK-qualified Maths teacher</strong><small>QTS · TRCN certified</small></span></div>
+<div class="floating-card card-support"><span aria-hidden="true" class="mini-dot"></span><span><strong>Schoolwork to exam day</strong><small>WAEC · JAMB · GCSE · IGCSE</small></span></div>
+<span aria-hidden="true" class="math-doodle doodle-1">x² + y²</span><span aria-hidden="true" class="math-doodle doodle-2">π</span>
+</div>
+</div>
+<div class="container hero-footer"><span class="small-lines"></span> FOR NIGERIAN &amp; INTERNATIONAL LEARNERS <span aria-hidden="true" class="hero-footer-arrow">↓</span></div>
+</section>
+<section aria-label="Why families consider MathTutor Nigeria" class="trust-strip"><div class="container trust-grid">
+<div><strong>12+ years</strong><span>Mathematics teaching</span></div>
+<div><strong>UK QTS</strong><span>Professional teacher status</span></div>
+<div><strong>TRCN</strong><span>Certified Nigerian teacher</span></div>
+<div><strong>2 curricula</strong><span>Nigerian &amp; British support</span></div>
+</div></section>
+<section aria-labelledby="why-title" class="section-pad" id="why-us">
+<div class="container">
+<div class="section-head split-head"><div><div class="kicker">WE GET IT</div><h2 id="why-title">Maths can feel hard.<br/><em>The right support helps.</em></h2></div><p>When your child says “I don't understand,” they're telling you where the journey should begin. We listen, identify the difficulty and teach step by step.</p></div>
+<div class="problem-grid">
+<article class="problem-card"><div class="problem-number">01 /</div><div aria-hidden="true" class="problem-icon">?</div><h3>Falling confidence</h3><p>When difficult topics make your child feel they are simply “not a Maths person.”</p><div class="problem-solution">We rebuild understanding, one concept at a time. <span aria-hidden="true">↗</span></div></article>
+<article class="problem-card"><div class="problem-number">02 /</div><div aria-hidden="true" class="problem-icon">≠</div><h3>Frustrating homework</h3><p>When every assignment becomes a long evening of confusion and stress.</p><div class="problem-solution">We guide practice and explain the reasoning. <span aria-hidden="true">↗</span></div></article>
+<article class="problem-card"><div class="problem-number">03 /</div><div aria-hidden="true" class="problem-icon">⌛</div><h3>Exams getting closer</h3><p>When a major test is approaching and key skills still feel uncertain.</p><div class="problem-solution">We make revision more focused and structured. <span aria-hidden="true">↗</span></div></article>
+</div>
+</div>
+</section>
+<section aria-labelledby="method-title" class="method-section section-pad">
+<div class="container method-grid"><div class="method-intro"><div class="kicker kicker-light">OUR APPROACH</div><h2 id="method-title">A clearer path.<br/><em>Less guesswork.</em></h2><p>There is no one-size-fits-all shortcut. We make learning personal and support progress with clear explanations, guided practice and useful feedback.</p><a class="button button-cream" href="#assessment">Start with an assessment <span aria-hidden="true">↗</span></a></div>
+<div class="steps">
+<div class="step"><span>01</span><div><h3>Understand the challenge</h3><p>Tell us about your child's level, curriculum, strengths and difficult topics.</p></div></div>
+<div class="step"><span>02</span><div><h3>Build the learning plan</h3><p>We recommend a suitable tutoring approach, beginning with the most important learning gaps.</p></div></div>
+<div class="step"><span>03</span><div><h3>Learn, practise and improve</h3><p>Students work through structured lessons with regular questions and feedback.</p></div></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="programmes-title" class="section-pad programmes-section" id="programmes">
+<div class="container">
+<div class="section-head centre-head"><div class="kicker">WHAT WE TEACH</div><h2 id="programmes-title">Support for every <em>Maths milestone.</em></h2><p>School lessons, homework challenges and high-stakes exam preparation — with a plan for the student in front of us.</p></div>
+<div class="programme-grid">
+<article class="programme-card"><span aria-hidden="true" class="prog-icon light-blue">123</span><div class="prog-kind">FOUNDATION</div><h3>Primary Maths</h3><p>Build confidence with number skills, fractions, decimals, reasoning and problem-solving.</p><a data-curriculum="Primary Mathematics" href="#assessment">Explore primary support <span aria-hidden="true">↗</span></a><a class="programme-detail-link" href="common-entrance-maths-tutor.html">Read our programme guide →</a></article>
+<article class="programme-card"><span aria-hidden="true" class="prog-icon peach">x²</span><div class="prog-kind">SCHOOL SUPPORT</div><h3>Secondary Maths</h3><p>Make sense of algebra, geometry, trigonometry, statistics and classroom assessments.</p><a data-curriculum="Secondary Mathematics" href="#assessment">Explore secondary support <span aria-hidden="true">↗</span></a></article>
+<article class="programme-card"><span aria-hidden="true" class="prog-icon pale-green">✓</span><div class="prog-kind">NIGERIAN EXAMS</div><h3>WAEC · NECO · GCE</h3><p>Targeted revision, worked examples, question practice and examination techniques.</p><a data-curriculum="WAEC / NECO / GCE" href="#assessment">Explore exam support <span aria-hidden="true">↗</span></a><a class="programme-detail-link" href="waec-neco-gce-maths-tutor.html">Read our programme guide →</a></article>
+<article class="programme-card"><span aria-hidden="true" class="prog-icon pale-yellow">A+</span><div class="prog-kind">SCHOOL TRANSITIONS</div><h3>Common Entrance · BECE</h3><p>Develop number fluency, problem-solving strategies and confidence ahead of key tests.</p><a data-curriculum="Common Entrance / BECE" href="#assessment">Explore preparation <span aria-hidden="true">↗</span></a></article>
+<article class="programme-card featured-programme"><span aria-hidden="true" class="prog-icon">π</span><div class="prog-kind">BRITISH CURRICULUM</div><h3>GCSE · IGCSE Maths</h3><p>Personalised support with core concepts, exam-style problems and revision practice for international learners.</p><a data-curriculum="GCSE / IGCSE" href="#assessment">Explore GCSE / IGCSE <span aria-hidden="true">↗</span></a><a class="programme-detail-link" href="gcse-igcse-maths-tutor.html">Read our programme guide →</a></article>
+<article class="programme-card"><span aria-hidden="true" class="prog-icon light-blue">↗</span><div class="prog-kind">ENTRANCE &amp; HOMEWORK</div><h3>JAMB · Homework Help</h3><p>Focused UTME Mathematics revision or one-to-one support for difficult assignments.</p><a data-curriculum="JAMB / Homework" href="#assessment">Find the right support <span aria-hidden="true">↗</span></a><a class="programme-detail-link" href="jamb-maths-tutor.html">Read our programme guide →</a></article>
+</div>
+</div>
+</section>
+<section aria-labelledby="tutor-title" class="tutor-section section-pad" id="tutor">
+<div class="container tutor-grid">
+<div class="tutor-photo-wrap"><div class="tutor-photo"><img alt="Professional portrait of Mr. Segun Oladele" height="640" loading="lazy" src="assets/segun-oladele.webp" width="640"/></div><div class="tutor-sticker"><span class="sticker-spark">✦</span><span>Passion for Maths.<br/>Purpose in teaching.</span></div></div>
+<div class="tutor-copy"><div class="kicker">MEET YOUR TUTOR</div><h2 id="tutor-title">Hello, I'm<br/><em>Mr. Segun Oladele.</em></h2><p class="tutor-role">Founder &amp; Lead Mathematics Tutor, MathTutor Nigeria</p><p>I'm a Mathematics teacher at King's College, Lagos, and the founder of EMIVANT. For over 12 years, I've helped learners approach difficult Maths concepts through clear explanations, individual attention and consistent practice.</p><p>I hold a B.Sc. (Education) in Mathematics, UK Qualified Teacher Status (QTS), and certification with Nigeria's Teachers Registration Council (TRCN). I support Nigerian and international students, including those preparing for GCSE and IGCSE Mathematics.</p>
+<div class="qualification-grid"><span><b>✓</b> UK Qualified Teacher Status</span><span><b>✓</b> TRCN Certified Teacher</span><span><b>✓</b> B.Sc. (Ed) Mathematics</span><span><b>✓</b> Award-winning educator</span></div>
+<div class="tutor-meta"><span>Also Founder of</span><img alt="EMIVANT — Education redefined" height="173" loading="lazy" src="assets/emivant-logo.webp" width="548"/></div>
+<p class="affiliation-note">King's College, Lagos is listed as professional teaching experience; this tutoring service is independently operated and is not presented as an official school programme.</p>
+</div>
+</div>
+</section>
 
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#programs">Programs</a>
-        <a href="#assessment">Assessment</a>
-        <a href="#contact">Contact</a>
-        <a class="nav-cta" href="https://wa.me/2348130856747?text=Hello%20Mr%20Segun%2C%20I%20would%20like%20to%20ask%20about%20online%20Mathematics%20lessons." data-track-contact="whatsapp">WhatsApp</a>
-      </nav>
-    </div>
-  </header>
+<section aria-labelledby="videos-title" class="media-showcase section-pad" hidden="" id="videos">
+<div class="container"><div class="section-head split-head"><div><div class="kicker">WATCH &amp; LEARN</div><h2 id="videos-title">See how Maths <em>can click.</em></h2></div><p>Watch the three YouTube videos selected by MathTutor Nigeria. Play a video here or watch it directly on YouTube.</p></div>
+<div class="media-gallery" id="youtube-gallery"></div>
+<div class="media-section-end"><a class="button button-outline" href="#assessment">Discuss your child's Maths needs <span aria-hidden="true">↗</span></a><span>Videos open only when you choose to play them.</span></div>
+</div>
+</section>
+<section aria-labelledby="testimonials-title" class="testimonials-section section-pad" hidden="" id="testimonials">
+<div class="container"><div class="section-head split-head"><div><div class="kicker">REAL STUDENT FEEDBACK</div><h2 id="testimonials-title">What students <em>have shared.</em></h2></div><p>Real messages from learners about tutoring and BECE preparation. Names, profile photos and contact details are cropped out in the preview.</p></div>
+<div class="testimonial-gallery" id="testimonial-gallery"></div>
+<p class="feedback-disclaimer">Original feedback refers to EMIVANT, our associated education brand. The messages are not rewritten or presented as independent Google reviews. Student-reported results are not independently verified; individual outcomes vary.</p>
+</div>
+</section>
+<section aria-labelledby="google-title" class="google-trust" id="google-reviews">
+<div class="container google-trust-grid">
+<div><div class="kicker">GOOGLE BUSINESS PROFILE</div><h2 id="google-title">MathTutor Nigeria <em>on Google.</em></h2><p>MathTutor Nigeria is supported by EMIVANT Educational and Technology Services Limited. View the Google business link provided by our founder. This currently points to the EMIVANT organisation associated with MathTutor Nigeria.</p><p class="google-listing-note">Transparency: This link is supplied as EMIVANT’s business profile, <strong>not as a separately verified MathTutor Nigeria listing</strong>.</p></div>
+<div class="google-card"><span aria-hidden="true" class="google-letter">G</span><span class="google-card-label">PUBLIC BUSINESS LISTING</span><h3>MathTutor Nigeria / EMIVANT</h3><p>Victoria Island · Lagos, Nigeria</p>
+<a class="button button-orange" href="https://share.google/irBQoJA5AaJhdI7Ep" id="google-profile-link" rel="noopener noreferrer" target="_blank">Open our Google business link ↗</a>
+<a class="google-fallback-link" href="https://www.google.com/maps/search/?api=1&amp;query=EMIVANT+Educational+and+Technology+Services+Limited" id="google-fallback-link" rel="noopener noreferrer" target="_blank">Search our organisation on Google Maps ↗</a>
+<a class="google-write-review" hidden="" id="google-review-link" rel="noopener noreferrer" target="_blank">Leave a genuine Google review ↗</a>
+</div>
+</div>
+</section><section aria-labelledby="plans-title" class="plans-section section-pad" id="plans">
+<div class="container"><div class="section-head centre-head"><div class="kicker">FLEXIBLE OPTIONS</div><h2 id="plans-title">Choose your level <em>of support.</em></h2><p>Below are the prices currently advertised by MathTutor Nigeria. We will confirm lesson frequency and duration before enrolment.</p></div>
+<div class="plans-grid">
+<article class="plan-card"><div class="plan-kind">For a specific challenge</div><h3>Homework Support</h3><div class="plan-price">₦10,000</div><div class="plan-billing">per focused support session</div><ul><li>Help with a difficult task</li><li>Worked explanations</li><li>Guided problem-solving</li></ul><a class="button button-outline button-plan" data-plan="Homework Support" href="#assessment">Ask about this plan</a></article>
+<article class="plan-card"><div class="plan-kind">For steady learning</div><h3>Foundation</h3><div class="plan-price">₦50,000</div><div class="plan-billing">per month</div><ul><li>Private Mathematics lessons</li><li>Schoolwork support</li><li>Personalised focus areas</li></ul><a class="button button-outline button-plan" data-plan="Foundation" href="#assessment">Ask about this plan</a></article>
+<article class="plan-card plan-featured"><div class="popular-tag">POPULAR CHOICE</div><div class="plan-kind">For more structure</div><h3>Gold</h3><div class="plan-price">₦100,000</div><div class="plan-billing">billing details confirmed on enquiry</div><ul><li>Mathematics lessons</li><li>Assessment support</li><li>Progress feedback</li></ul><a class="button button-orange button-plan" data-plan="Gold" href="#assessment">Ask about this plan</a></article>
+<article class="plan-card"><div class="plan-kind">For intensive support</div><h3>Platinum</h3><div class="plan-price">₦150,000</div><div class="plan-billing">billing details confirmed on enquiry</div><ul><li>Specialised Mathematics lessons</li><li>Homework support</li><li>Priority scheduling</li></ul><a class="button button-outline button-plan" data-plan="Platinum" href="#assessment">Ask about this plan</a></article>
+</div><p class="plans-disclaimer">All plans are subject to tutor availability. Request an assessment to confirm lesson schedule, duration, format and applicable fees, including arrangements for students outside Nigeria.</p>
+</div>
+</section>
+<section aria-labelledby="assessment-title" class="assessment-section section-pad" id="assessment">
+<div class="container assessment-grid"><div class="assessment-copy"><div class="kicker kicker-light">YOUR FIRST STEP</div><h2 id="assessment-title">Let's find out what your child <em>needs next.</em></h2><p>Tell us a little about your child's learning needs. We'll use the details to discuss suitable Maths support and the next step.</p><div class="assessment-perks"><span>✓ No commitment to enrol</span><span>✓ Personalised learning discussion</span><span>✓ Nigerian &amp; international curricula</span></div><div class="assessment-help">Prefer to speak directly?<br/><a href="https://wa.me/2348130856747?text=Hello%20MathTutor%20Nigeria%2C%20I%20would%20like%20to%20ask%20about%20Mathematics%20tutoring." rel="noopener noreferrer" target="_blank">Chat with us on WhatsApp <span aria-hidden="true">↗</span></a></div></div>
+<div class="form-card"><div class="form-heading"><span aria-hidden="true" class="form-badge">✦</span><div><h3>Free Mathematics Assessment</h3><p>For parents and guardians</p></div></div>
+<!-- Netlify Forms will activate after deploying this HTML to a Netlify site with form detection enabled. -->
+<form action="/thank-you.html" data-netlify="true" id="assessment-form" method="POST" name="free-mathematics-assessment" netlify-honeypot="bot-field">
+<input name="form-name" type="hidden" value="free-mathematics-assessment"/>
+<p class="visually-hidden"><label>Don't fill this out if you're human: <input autocomplete="off" name="bot-field" tabindex="-1"/></label></p>
+<div class="form-row"><label for="parent-name">Your name *<input autocomplete="name" id="parent-name" maxlength="100" name="parent-name" placeholder="Parent or guardian's name" required="" type="text"/></label><label for="whatsapp">WhatsApp number *<input autocomplete="tel" id="whatsapp" inputmode="tel" maxlength="30" name="whatsapp" placeholder="e.g. +234 801 234 5678" required="" type="tel"/></label></div>
+<div class="form-row"><label for="email">Email address *<input autocomplete="email" id="email" maxlength="160" name="email" placeholder="you@example.com" required="" type="email"/></label><label for="country">Country *<input autocomplete="country-name" id="country" maxlength="80" name="country" placeholder="Where you live" required="" type="text"/></label></div>
+<div class="form-row"><label for="age">Child's age range *<select id="age" name="age" required=""><option disabled="" selected="" value="">Select age range</option><option>6–8</option><option>9–11</option><option>12–14</option><option>15–16</option><option>17+</option></select></label><label for="curriculum">Curriculum or exam *<select id="curriculum" name="curriculum" required=""><option disabled="" selected="" value="">Select a programme</option><option>Primary Mathematics</option><option>Secondary Mathematics</option><option>Common Entrance / BECE</option><option>WAEC / NECO / GCE</option><option>JAMB / Homework</option><option>GCSE / IGCSE</option><option>Other / Not sure</option></select></label></div>
+<label for="challenge">What is your child finding difficult? *<textarea id="challenge" maxlength="1500" name="challenge" placeholder="Share the topic, recent challenge or exam goal..." required="" rows="3"></textarea></label>
+<label class="checkbox-line"><input name="consent" required="" type="checkbox"/><span>I am a parent or guardian and agree to be contacted about this tutoring enquiry. I have read the <a href="privacy.html" rel="noopener noreferrer" target="_blank">privacy notice</a>.</span></label>
+<button class="button button-orange form-submit" type="submit">Request my free assessment <span aria-hidden="true">↗</span></button>
+<p class="form-footnote">We use your information only to respond to this enquiry. Please do not share sensitive information about your child.</p>
+</form>
+</div>
+</div>
+</section>
+<section aria-labelledby="faq-title" class="faq-section section-pad" id="faq"><div class="container faq-grid"><div class="faq-left"><div class="kicker">YOUR QUESTIONS</div><h2 id="faq-title">A few things<br/><em>parents ask.</em></h2><p>Still deciding what is right for your child? Start with an assessment or message us directly.</p><a class="text-link" href="https://wa.me/2348130856747?text=Hello%20MathTutor%20Nigeria%2C%20I%20have%20a%20question%20about%20tutoring." rel="noopener noreferrer" target="_blank">Ask on WhatsApp <span aria-hidden="true">↗</span></a></div><div class="faq-list">
+<details><summary>Do you teach students outside Nigeria? <span>+</span></summary><p>Yes. Online Mathematics tutoring is available to international students, subject to suitable scheduling and curriculum requirements.</p></details>
+<details><summary>Can you help with GCSE and IGCSE Maths? <span>+</span></summary><p>Yes. We support GCSE and IGCSE learners with mathematical concepts, examination-style questions and structured revision.</p></details>
+<details><summary>What if my child struggles with the basics? <span>+</span></summary><p>We start by identifying difficult topics and recommend a plan that builds understanding before moving on to more advanced material.</p></details>
+<details><summary>Can you prepare my child for WAEC, NECO or JAMB? <span>+</span></summary><p>Yes. We offer targeted Mathematics support for these examinations, as well as GCE, Common Entrance and BECE.</p></details>
+<details><summary>What happens after the free assessment request? <span>+</span></summary><p>We review the details you provide and contact you to discuss learning needs, available lesson arrangements and relevant programmes. Submitting an enquiry does not commit you to enrol.</p></details>
+</div></div></section>
+<section class="closing-cta"><div class="container closing-inner"><div><div class="kicker kicker-light">START WHERE YOU ARE</div><h2>Confidence begins with<br/><em>one clear explanation.</em></h2><p>Let's help your child move forward in Mathematics.</p></div><a class="button button-orange" href="#assessment">Book the free assessment <span aria-hidden="true">↗</span></a></div></section>
+</main>
+<footer class="site-footer" id="contact"><div class="container footer-upper">
+<div class="footer-brand"><a class="wordmark footer-wordmark" href="#home"><span aria-hidden="true" class="wordmark-symbol">∑</span><span class="wordmark-lines"><span class="wordmark-main">Math<span>Tutor</span></span><span class="wordmark-sub">NIGERIA</span></span></a><p>Personalised Mathematics tutoring for Nigerian and international students.</p><div class="footer-emivant"><span>Powered by</span><img alt="EMIVANT — Education redefined" height="173" loading="lazy" src="assets/emivant-logo.webp" width="548"/></div></div>
+<div class="footer-links"><h3>Explore</h3><a href="#why-us">Why us</a><a href="#programmes">Programmes</a><a href="#tutor">Meet your tutor</a><a href="#plans">Tuition plans</a><a href="#videos">Watch videos</a><a href="#testimonials">Student feedback</a><a href="#google-reviews">Google business listing</a></div>
+<div class="footer-links"><h3>Get started</h3><a href="#assessment">Free assessment</a><a href="#faq">Frequently asked questions</a><a href="privacy.html">Privacy notice</a> <a href="?cookie-settings=1" id="mt-cookie-settings">Cookie settings</a><a href="https://www.emivant.com.ng/" rel="noopener noreferrer" target="_blank">EMIVANT website ↗</a></div>
+<div class="footer-contact"><h3>Let's talk Maths</h3><a href="tel:+2348130856747">0813 085 6747</a><a href="mailto:segunoladele@gmail.com">segunoladele@gmail.com</a><p>Lagos, Nigeria · Online worldwide</p><a class="footer-whatsapp" href="https://wa.me/2348130856747?text=Hello%20MathTutor%20Nigeria" rel="noopener noreferrer" target="_blank">WhatsApp us <span aria-hidden="true">↗</span></a></div>
+</div><div class="container footer-bottom"><span>© <span id="year">2026</span> MathTutor Nigeria. All rights reserved.</span><span>Independent tutoring service led by Mr. Segun Oladele</span></div></footer>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Personalised online Mathematics support</p>
-          <h1>Help Your Child Understand Mathematics and Grow in Confidence</h1>
-          <p class="hero-copy">
-            One-to-one and small-group online Mathematics lessons for children ages 6–16,
-            including primary, secondary, Common Entrance, NECO, WAEC and IGCSE support. Math Clinic.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#assessment">Book a Free Assessment</a>
-            <a class="btn btn-secondary" href="#programs">Explore Programmes</a>
-          </div>
-
-          <ul class="hero-points">
-            <li>12+ years of teaching experience</li>
-            <li>UK Qualified Teacher Status</li>
-            <li>Nigerian and British curricula</li>
-            <li>Students supported worldwide</li>
-          </ul>
-        </div>
-
-        <aside class="hero-card" aria-label="Key tutoring benefits">
-          <h2>A clear learning plan for your child</h2>
-          <p>Start with a short assessment so lessons can focus on the exact areas where support is needed.</p>
-          <div class="stat"><strong>Primary</strong><span>Ages 6–11</span></div>
-          <div class="stat"><strong>Secondary</strong><span>Ages 12–16</span></div>
-          <div class="stat"><strong>Exams</strong><span>BECE · WAEC · IGCSE</span></div>
-        </aside>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="section-head">
-          <p class="section-kicker">Why parents choose Emivant</p>
-          <h2 class="section-title">Experienced, Personalised and Results-Focused Support</h2>
-          <p class="section-subtitle">Lessons are designed around the learner’s current level, curriculum and confidence.</p>
-        </div>
-
-        <div class="trust-grid">
-          <article class="card">
-            <div class="icon-box">🏆</div>
-            <h3>Proven Teaching Experience</h3>
-            <p>Over 12 years of Mathematics teaching experience, supporting understanding, confidence and academic performance.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon-box">📘</div>
-            <h3>Clear, Patient Explanations</h3>
-            <p>Difficult topics are broken into simple steps, with guided practice and feedback suited to each learner.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon-box">🌍</div>
-            <h3>Online Learning Worldwide</h3>
-            <p>Flexible online lessons for students in Nigeria and families following British or international curricula.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="soft-section">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-kicker">Meet your tutor</p>
-          <h2 class="section-title">Professional Guidance for Every Stage</h2>
-        </div>
-
-        <div class="tutor-layout">
-          <article class="tutor-profile-card">
-            <img
-              src="segun-photo.jpg"
-              alt="Mr Segun Oladele, online Mathematics tutor"
-              class="tutor-photo"
-              width="220"
-              height="220">
-
-            <h3>Mr Segun Oladele</h3>
-            <p class="tutor-role">Founder &amp; Lead Mathematics Tutor</p>
-
-            <p>
-              An award-winning Mathematics educator with over 12 years of experience helping students build confidence, 
-              strengthen understanding, and achieve better examination results.
-            </p>
-
-            <p>
-              Through personalised teaching approaches and targeted learning strategies, 
-              he has helped students make remarkable progress in Mathematics, 
-              with some learners improving from 42% to 75% in their assessments.
-            </p>
-
-            <p>
-              He specialises in supporting students across Nigerian, British, and international curricula, 
-              including BECE, WAEC, IGCSE, and school-based assessments, 
-              helping learners overcome challenges and develop a stronger appreciation for Mathematics.
-            </p>
-
-            <p>
-              His mission is to make Mathematics clear, enjoyable and achievable for every learner.
-            </p>
-          </article>
-
-          <div class="tutor-side">
-            <article class="achievement-card">
-              <h3>Professional Achievements</h3>
-              <ul class="check-list">
-                <li>UK Qualified Teacher Status</li>
-                <li>B.Sc. Mathematics Education</li>
-                <li>12+ years’ teaching experience</li>
-                <li>AI in Pedagogy certified</li>
-                <li>Microsoft AI Education certified</li>
-                <li>Cisco CCNA certification</li>
-                <li>Award-winning Mathematics teacher</li>
-                <li>Mathematics education author</li>
-              </ul>
-            </article>
-
-            <article class="packages-card">
-              <div class="package-heading">
-                <div>
-                  <p class="section-kicker">Flexible learning options</p>
-                  <h3>Choose a Mathematics Plan</h3>
-                </div>
-                <a class="text-link" href="#assessment">Get guidance →</a>
-              </div>
-
-              <div class="package-grid">
-                <div class="mini-package">
-                  <span class="package-name">Homework Support</span>
-                  <strong>₦10,000</strong>
-                  <small>Focused homework-support session.</small>
-                </div>
-
-                <div class="mini-package">
-                  <span class="package-name">Foundation</span>
-                  <strong>₦50,000</strong>
-                  <small>Private lessons and school work support per month.</small>
-                </div>
-
-                <div class="mini-package featured-package">
-                  <span class="popular-label">Most popular</span>
-                  <span class="package-name">Gold</span>
-                  <strong>₦100,000</strong>
-                  <small>Lessons plus assessment and progress feedback.</small>
-                </div>
-
-                <div class="mini-package">
-                  <span class="package-name">Platinum</span>
-                  <strong>₦150,000</strong>
-                  <small>Special lessons, homework support and priority scheduling.</small>
-                </div>
-              </div>
-
-              <p class="package-note">
-                "Have a different budget in mind? We'll work with you to create a learning plan that fits your needs."
-              </p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="programs">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-kicker">Programmes for ages 6–16</p>
-          <h2 class="section-title">The Right Mathematics Support at Every Stage</h2>
-          <p class="section-subtitle">
-            From foundational number skills to examination preparation, each programme is adapted
-            to your child’s age, curriculum and learning needs.
-          </p>
-        </div>
-
-        <div class="program-grid">
-          <article class="program-card">
-            <span class="age-tag">Ages 6–11</span>
-            <h3>Primary Mathematics</h3>
-            <p>Build strong foundations, confidence and problem-solving ability from an early age.</p>
-            <ul class="program-list">
-              <li>Number skills</li>
-              <li>Fractions and decimals</li>
-              <li>Problem solving</li>
-              <li>Logical reasoning</li>
-              <li>Homework support</li>
-            </ul>
-            <a class="btn" href="#assessment">Explore Primary Lessons</a>
-          </article>
-
-          <article class="program-card">
-            <span class="age-tag">Ages 12–16</span>
-            <h3>Secondary Mathematics</h3>
-            <p>Clear support for increasingly complex Mathematics topics and school assessments.</p>
-            <ul class="program-list">
-              <li>Algebra</li>
-              <li>Geometry</li>
-              <li>Statistics</li>
-              <li>Trigonometry</li>
-              <li>Examination preparation</li>
-            </ul>
-            <a class="btn" href="#assessment">Explore Secondary Lessons</a>
-          </article>
-
-          <article class="program-card featured">
-            <span class="age-tag">BECE · WAEC · IGCSE</span>
-            <h3>Exam Preparation</h3>
-            <p>Targeted revision, guided practice and examination strategies to improve readiness.</p>
-            <ul class="program-list">
-              <li>Diagnostic assessment</li>
-              <li>Topic-by-topic revision</li>
-              <li>Past-question practice</li>
-              <li>Time-management support</li>
-              <li>Progress feedback</li>
-            </ul>
-            <a class="btn" href="#assessment">Prepare for an Exam</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="dark-section">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-kicker" style="color:#ffd96a">Curriculum support</p>
-          <h2 class="section-title">Supporting Learners Across Different School Systems</h2>
-          <p class="section-subtitle">Lessons can be aligned with your child’s school curriculum and examination goals.</p>
-        </div>
-
-        <div class="curriculum-grid">
-          <article class="curriculum-card">
-            <h3>Nigerian Curriculum</h3>
-            <p>School Mathematics, Common Entrance, BECE, WAEC and continuous assessment support.</p>
-          </article>
-
-          <article class="curriculum-card">
-            <h3>British Curriculum</h3>
-            <p>Structured Mathematics support for learners following British standards, including IGCSE.</p>
-          </article>
-
-          <article class="curriculum-card">
-            <h3>International Learners</h3>
-            <p>Online Mathematics support for families in different countries and educational systems.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="assessment" class="soft-section">
-      <div class="container assessment-wrap">
-        <aside class="assessment-copy">
-          <p class="section-kicker" style="color:#ffd96a">Free initial assessment</p>
-          <h2>Tell Us Where Your Child Needs Support</h2>
-          <p>
-            Complete the form and receive a personalised recommendation based on your child’s
-            age, curriculum and current Mathematics challenges.
-          </p>
-          <ul>
-            <li>Identify learning gaps</li>
-            <li>Recommend the right programme</li>
-            <li>Discuss lesson availability</li>
-            <li>Answer your questions before enrolment</li>
-          </ul>
-        </aside>
-
-        <form
-          class="assessment-form"
-          name="free-mathematics-assessment"
-          method="POST"
-          action="/thank-you.html"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          data-assessment-form="true">
-
-          <input type="hidden" name="form-name" value="free-mathematics-assessment">
-
-          <p class="hidden-field">
-            <label>Do not complete this field: <input name="bot-field"></label>
-          </p>
-
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="parent-name">Parent or guardian’s name</label>
-              <input id="parent-name" name="parent-name" type="text" autocomplete="name" required>
-            </div>
-
-            <div class="form-group">
-              <label for="whatsapp">WhatsApp number</label>
-              <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input id="email" name="email" type="email" autocomplete="email" required>
-            </div>
-
-            <div class="form-group">
-              <label for="country">Country</label>
-              <input id="country" name="country" type="text" autocomplete="country-name" required>
-            </div>
-
-            <div class="form-group">
-              <label for="child-age">Child’s age</label>
-              <select id="child-age" name="child-age" required>
-                <option value="">Select age group</option>
-                <option value="6-8">6–8</option>
-                <option value="9-11">9–11</option>
-                <option value="12-14">12–14</option>
-                <option value="15-16">15–16</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="curriculum">Curriculum or examination</label>
-              <select id="curriculum" name="curriculum" required>
-                <option value="">Select an option</option>
-                <option>Nigerian curriculum</option>
-                <option>British curriculum</option>
-                <option>Common Entrance</option>
-                <option>BECE</option>
-                <option>WAEC</option>
-                <option>IGCSE</option>
-                <option>School assessment</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div class="form-group full-width">
-              <label for="challenge">What Mathematics challenge does your child currently face?</label>
-              <textarea id="challenge" name="challenge" rows="5" required></textarea>
-            </div>
-          </div>
-
-          <button type="submit" class="btn">Request My Child’s Free Assessment</button>
-          <p class="privacy-note">Your information will only be used to respond to this assessment request.</p>
-        </form>
-      </div>
-    </section>
-
-    <section id="testimonials">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-kicker">Learner feedback</p>
-          <h2 class="section-title">What Students Say About Emivant</h2>
-        </div>
-
-        <div class="testimonial-grid">
-          <article class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>“The lessons made difficult topics clearer and helped me become more confident in Mathematics.”</p>
-            <strong>— IGCSE student</strong>
-          </article>
-
-          <article class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>“Mr Segun explains Mathematics in a simple and patient way and makes sure every topic is understood.”</p>
-            <strong>— Secondary school student</strong>
-          </article>
-
-          <article class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>“The lessons helped me prepare for my examination and approach Mathematics with greater confidence.”</p>
-            <strong>— BECE student</strong>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="final-cta">
-      <div class="container">
-        <h2>Give Your Child the Mathematics Support They Need</h2>
-        <p>Start with a free assessment and receive a learning recommendation tailored to your child.</p>
-        <a class="btn btn-primary" href="#assessment">Book the Free Assessment</a>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-kicker">Contact</p>
-          <h2 class="section-title">Speak With Emivant Online Mathematics Tutor</h2>
-        </div>
-
-        <div class="contact-grid">
-          <article class="card">
-            <h3>Contact Details</h3>
-            <p><strong>Tutor:</strong> Oladele Kayode Segun</p>
-            <p><strong>Location:</strong> Victoria Island, Lagos, Nigeria</p>
-            <p><strong>Phone/WhatsApp:</strong> <a href="tel:+2348130856747" data-track-contact="phone">08130856747</a></p>
-            <p><strong>Email:</strong> <a href="mailto:segunoladele@gmail.com" data-track-contact="email">segunoladele@gmail.com</a></p>
-          </article>
-
-          <article class="card">
-            <h3>Available Support</h3>
-            <p>✓ One-to-one online lessons</p>
-            <p>✓ Small-group classes</p>
-            <p>✓ Homework support</p>
-            <p>✓ Examination preparation</p>
-            <p>✓ International learners welcome</p>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 Emivant Online Mathematics Tutor. All rights reserved.</p>
-      <p>Online Mathematics lessons | Primary | Secondary | NECO | WAEC | IGCSE</p>
-      <p><a href="/privacy.html">Privacy and cookie notice</a></p>
-    </div>
-  </footer>
-
-  <a
-    class="whatsapp-float"
-    href="https://wa.me/2348130856747?text=Hello%20Mr%20Segun%2C%20I%20would%20like%20to%20ask%20about%20online%20Mathematics%20lessons."
-    aria-label="Chat with Emivant on WhatsApp" data-track-contact="whatsapp">
-    💬 <span>WhatsApp Us</span>
-  </a>
-
-  <aside id="cookie-consent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="Cookie choices">
-    <p>
-      Emivant uses analytics and advertising cookies to understand website visits and measure enquiries.
-      You may accept or reject optional tracking. Read the
-      <a href="/privacy.html">privacy and cookie notice</a>.
-    </p>
-    <div class="cookie-actions">
-      <button id="reject-cookies" class="cookie-btn" type="button">Reject optional cookies</button>
-      <button id="accept-cookies" class="cookie-btn accept" type="button">Accept cookies</button>
-    </div>
-  </aside>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const consentBox = document.getElementById('cookie-consent');
-      const savedChoice = localStorage.getItem('emivant_cookie_consent');
-
-      if (!savedChoice && consentBox) {
-        consentBox.classList.add('is-visible');
-      }
-
-      document.getElementById('accept-cookies')?.addEventListener('click', function () {
-        localStorage.setItem('emivant_cookie_consent', 'accepted');
-        grantTrackingConsent();
-        consentBox?.classList.remove('is-visible');
-      });
-
-      document.getElementById('reject-cookies')?.addEventListener('click', function () {
-        localStorage.setItem('emivant_cookie_consent', 'rejected');
-        denyTrackingConsent();
-        consentBox?.classList.remove('is-visible');
-      });
-
-      document.querySelectorAll('[data-track-contact]').forEach(function (link) {
-        link.addEventListener('click', function () {
-          trackContact(link.dataset.trackContact || 'other');
-        });
-      });
-
-      const assessmentForm = document.querySelector('[data-assessment-form="true"]');
-      assessmentForm?.addEventListener('submit', function () {
-        if (typeof gtag === 'function') {
-          gtag('event', 'form_submit_attempt', {
-            form_name: 'free-mathematics-assessment'
-          });
-        }
-      });
-    });
-  </script>
-
-</body>
+<aside class="mt-cookie-widget" id="mt-cookie-widget" role="region" aria-label="Cookie choices" hidden>
+  <p><strong>Your privacy matters.</strong> We use optional Google Analytics and Meta Pixel tracking to understand website visits and enquiries. You may accept or reject these cookies. <a href="privacy.html">Privacy notice</a> <a href="?cookie-settings=1" id="mt-cookie-settings">Cookie settings</a>.</p>
+  <div class="mt-cookie-actions"><button type="button" id="mt-cookie-reject">Reject optional cookies</button><button type="button" class="mt-cookie-accept" id="mt-cookie-accept">Accept optional cookies</button></div>
+</aside>
+<div class="mobile-fixed-cta"><a href="#assessment">Free assessment <span aria-hidden="true">↗</span></a><a href="https://wa.me/2348130856747?text=Hello%20MathTutor%20Nigeria" rel="noopener noreferrer" target="_blank">WhatsApp ↗</a></div>
+<script defer src="tracking.js"></script>
+<script defer="" src="script.js"></script>
+<script defer="True" src="media-content.js"></script><script defer="True" src="media.js"></script></body>
 </html>
